@@ -370,6 +370,30 @@ node_t *deleteDupItem(node_t *head) {
     return head;
 }
 
+//链表有环，如何判断相交
+//如果有环且两个链表相交，则两个链表都有共同一个环，即环上的任意一个节点都存在于两个链表上
+bool isIntersectLoop(node_t *head1, node_t *head2) {
+    node_t *cur1;
+    node_t *cur2;
+    if(!hasCircle(head1, cur1))
+        return false;
+    if(!hasCircle(head2, cur2))
+        return false;
+    
+    node_t *t = cur2->m_next;
+    while(t != cur2) {
+        if(t == cur1) {
+            return true;
+        }
+        
+        t = t->m_next;
+    }
+    
+    return false;
+}
+
+//二叉排序树转换成双向链表
+todo
 /*
  遍历的时候，不要在while循环中head=head.Next;这样会改变原先的数据结构。我们要这么写：Link curr=head;然后curr=curr.Next;
  有时我们需要临时把环切开，有时我们需要临时把单链表首尾相连成一个环。
