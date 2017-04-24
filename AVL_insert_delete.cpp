@@ -75,3 +75,62 @@ node_t *insert(node_t *node, int key) {
     
     return node;
 }
+
+node_t *minValueNode(node_t *node) {
+    node_t *current = node;
+    while(current->lchild) {
+        current = current->lchild;
+    }
+    
+    return current;
+}
+
+node_t *DeleteNode(node_t *root, int key) {
+    if(root == nullptr) return root;
+    
+    if(key < root->c)
+        root->lchild = DeleteNode(root->lchild, key);
+    else if(key > root->c)
+        root->rchild = DeleteNode(root->rchild, key);
+    else {
+        if(root->lchild == nullptr || root->rchild == nullptr) {
+            node_t *t = root->lchild ? root->lchild : root->rchild;
+            
+            if(t == nullptr) {
+                t = root;
+                root = nullptr;
+            }
+            else {
+                *root = *t;
+            }
+            free(t);
+        }
+        else {
+            node_t *t = minValueNode(root->rchild);
+            root->c = t->c;
+            root->rchild = DeleteNode(root->rchild, t->c);
+        }
+    }
+    
+    if(root == nullptr) return root;
+    
+    root->height = Max(height(root->lchild), height(root->rchild)) + 1;
+    
+    int balance = getBalance(root);
+    if(balance > 1 && getBalance(root->lchild) >= 0) { //left left case
+        return rightRotate(root);
+    }
+    if(balance > 1 && getBalance(root->lchild) < 0) { // left right case
+        root->lchild = leftRotate(root->lchild);
+        return rightRotate(root);
+    }
+    if(balance < -1 && getBalance(root->rchild) <= 0) {// right right case
+        return leftRotate(root);
+    }
+    if(balance < -1 && getBalance(root->rchild) > 0) { // right left case
+        root->rchild = rightRotate(root->rchild);
+        return leftRotate(root);
+    }
+    
+    return root;
+}
