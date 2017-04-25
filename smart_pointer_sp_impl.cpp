@@ -1,3 +1,5 @@
+//source : https://www.codeproject.com/Articles/15351/Implementing-a-simple-smart-pointer-in-c
+
 class Person {
 public:
     Person() : age(0), pname(nullptr){}
