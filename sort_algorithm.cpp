@@ -1,6 +1,12 @@
 /*
  插入排序
  */
+/*
+最坏时间复杂度	O(n^{2})
+最优时间复杂度	O(n)
+平均时间复杂度	O(n^{2})
+空间复杂度	总共  O(n) ，需要辅助空间 O(1)
+*/
 //1 直接插入
 void insert_sort(int arr[], int length) {
     int i, j, key;
@@ -16,6 +22,12 @@ void insert_sort(int arr[], int length) {
     }
 }
 //2 希尔排序
+/*
+最坏时间复杂度	根据步长序列的不同而不同。已知最好的： O(nlog^2 n)
+最优时间复杂度	O(n)
+平均时间复杂度	根据步长序列的不同而不同。
+空间复杂度	O(n)
+*/
 void shell_sort(int arr[], int length) {
     int gap, i, j;
     int temp;
@@ -36,6 +48,12 @@ void shell_sort(int arr[], int length) {
  选择排序
  */
 //1 简单选择排序
+/*
+最坏时间复杂度	О(n²)
+最优时间复杂度	О(n²)
+平均时间复杂度	О(n²)
+空间复杂度	О(n) total, O(1) auxiliary
+*/
 void select_sort(std::vector<int>& arr) {
     for(int i=0;i<arr.size()-1;i++) {
         int min = i;
@@ -47,6 +65,12 @@ void select_sort(std::vector<int>& arr) {
     }
 }
 //2 堆排序
+/*
+最坏时间复杂度	O(nlog n)
+最优时间复杂度	O(nlog n)
+平均时间复杂度	(nlog n)
+空间复杂度	O(n) total,  O(1) auxiliary
+*/
 void max_heapify(int arr[], int start, int end) {
     int dad = start;
     int son = dad * 2 + 1;
@@ -78,6 +102,12 @@ void heap_sort(int arr[], int len) {
  交换排序
  */
 //1 bubble sort
+/*
+最坏时间复杂度	O(n^{2})
+最优时间复杂度	O(n)
+平均时间复杂度	O(n^{2})
+空间复杂度	总共 O(n)，需要辅助空间 O(1)
+*/
 void bubble_sort(int arr[], int len) {
     int i, j;
     for(i=0;i<len-1;i++) {
@@ -88,6 +118,11 @@ void bubble_sort(int arr[], int len) {
     }
 }
 //2 快速排序
+/*
+最坏时间复杂度	(n^{2})
+最优时间复杂度	(nlog n)
+平均时间复杂度	(nlog n)
+*/
 void quick_sort_recursive(int arr[], int start, int end) {
     if(start >= end) return;
     
@@ -150,6 +185,12 @@ void quick_sort(int arr[], const int len) {
 /*
  归并排序
  */
+/*
+最坏时间复杂度	(nlog n)
+最优时间复杂度	(n)
+平均时间复杂度	(nlog n)
+空间复杂度	(n)
+*/
 void merge_sort(int arr[], int len) {
     int *a = arr;
     int *b = new int[len];
@@ -186,6 +227,8 @@ void merge_sort(int arr[], int len) {
 /*
  基数排序
  */
+//最坏时间复杂度 O(kN)
+//空间复杂度	O(k+N)
 int maxbit(int data[], int n) {
     int max = data[0];
     for(int i=1;i<n;++i) {
