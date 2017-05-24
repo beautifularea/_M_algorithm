@@ -55,14 +55,16 @@ void shell_sort(int arr[], int length) {
 空间复杂度	О(n) total, O(1) auxiliary
 */
 void select_sort(std::vector<int>& arr) {
-    for(int i=0;i<arr.size()-1;i++) {
-        int min = i;
-        for(int j=i+1;j<arr.size();j++) {
-            min = j;
-        }
-        
-        std::swap(arr[i], arr[min]);
-    }
+	for(int i=0;i<arr.size();++i) {
+		int min = i;
+
+		for(int j=i+1;j<arr.size();++j) {
+			if(arr[j] < arr[min])
+				min = j;
+		}
+
+		std::swap(arr[i], arr[min]);
+	}
 }
 //2 堆排序
 /*
