@@ -8,6 +8,7 @@ public:
 	int get(int key) {
 		if(cacheMap.find(key) == cacheMap.end()) return -1;
 
+		//Transfers elements from x into the container, inserting them at position.
 		cacheList.splice(cacheList.begin(), cacheList,cacheMap[key]);
 		cacheMap[key] = cacheList.begin();
 		return cacheMap[key]->value;
